@@ -4,11 +4,19 @@ An active glossary of terms, concepts, and acronyms used throughout my AI and ro
 
 ---
 
+## A
+
+### Ament
+-   **Definition**: The build system used by ROS 2, which is an evolution of the `catkin` build system from ROS 1. It provides the tools and logic for processing packages. `ament_cmake` is a specific type of Ament package that uses CMake for its build logic, making it ideal for C++ and mixed-language projects.
+-   **Context/Significance**: We used the `ament_cmake` build type for our `core_robotics_package` because it provides the flexibility to build both our C++ subscriber and Python publisher within the same package, a common practice in professional robotics.
+
+---
+
 ## C
 
 ### Colcon
 -   **Stands For**: **Co**llective **Con**struction
--   **Definition**: The standard build tool for ROS 2. It's used to compile and build workspaces containing one or more ROS 2 packages, managing dependencies and generating the necessary setup files.
+-   **Definition**: The standard command-line build tool for ROS 2. It's used to compile and build workspaces containing one or more ROS 2 packages, managing dependencies and generating the necessary setup files.
 -   **Context/Significance**: We use `colcon build` to turn our Python and C++ source code into executable nodes that ROS 2 can run. Mastering colcon is essential for managing any non-trivial robotics project.
 
 ---
@@ -54,7 +62,28 @@ An active glossary of terms, concepts, and acronyms used throughout my AI and ro
 
 ---
 
+## N
+
+### Node
+-   **Definition**: The fundamental unit of computation in ROS 2. A node is a process that performs a specific task, such as controlling a motor, reading sensor data, or planning a path. Nodes communicate with each other by sending and receiving messages via topics, services, or actions.
+-   **Context/Significance**: In Phase 2, we created two nodes: a Python publisher node (`simple_publisher`) and a C++ subscriber node (`simple_subscriber`), demonstrating the core building block of a ROS 2 system.
+
+---
+
+## P
+
+### Package
+-   **Definition**: The primary unit for organizing software in ROS 2. A package is a directory that contains everything related to a specific functionality, including its source code (nodes), launch files, configuration files, and a `package.xml` manifest file that defines its properties and dependencies.
+-   **Context/Significance**: We created the `core_robotics_package` to contain our publisher and subscriber nodes, learning the standard structure for organizing and distributing robotics software.
+
+---
+
 ## R
+
+### rclcpp / rclpy
+-   **Stands For**: ROS Client Library for C++ / ROS Client Library for Python
+-   **Definition**: These are the official client libraries that provide the high-level APIs for interacting with the ROS 2 system in their respective languages. They provide the tools to create nodes, publishers, subscribers, services, and more.
+-   **Context/Significance**: We used `rclpy` to write our publisher node and `rclcpp` to write our subscriber node, demonstrating proficiency in the two most common and important ROS 2 client libraries.
 
 ### ROS (ROS 2)
 -   **Stands For**: Robot Operating System
@@ -76,9 +105,25 @@ An active glossary of terms, concepts, and acronyms used throughout my AI and ro
 
 ---
 
+## T
+
+### Topic
+-   **Definition**: A named bus over which ROS 2 nodes exchange messages. Topics have a many-to-many communication relationship: any number of nodes can publish (send) messages to a topic, and any number of nodes can subscribe (receive) messages from that same topic.
+-   **Context/Significance**: Our nodes used the `/chatter` topic to communicate. The publisher sent messages to `/chatter`, and the subscriber received them from `/chatter`, demonstrating the most common communication pattern in ROS 2.
+
+---
+
 ## V
 
 ### VRAM
 -   **Stands For**: Video Random Access Memory
 -   **Definition**: Specialized RAM used to store image and graphics data for a computer's display. In the context of AI and simulation, it's the dedicated memory on the GPU.
--   **Context/Significance**: VRAM is a critical resource for running Isaac Sim and training large AI models. The amount of available VRAM on a GPU determines the complexity of the simulations and models that can be run, which was a key factor in our decision to consider cloud-based development.
+-   **Context/Significance**: VRAM is a critical resource for running Isaac Sim and training large AI models. The amount of available VRAM on a GPU determines the complexity of the simulations and models that can be run.
+
+---
+
+## W
+
+### Workspace
+-   **Definition**: A directory containing one or more ROS 2 packages, along with `build`, `install`, and `log` subdirectories created by `colcon`. A workspace allows you to develop and build multiple related packages simultaneously.
+-   **Context/Significance**: We created the `ros2-ws` workspace to house our `core_robotics_package`. Sourcing the `install/setup.bash` file from this workspace makes our custom package's executables available in our terminal.
